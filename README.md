@@ -1,12 +1,12 @@
 # provisional-name-distinction
 
-`provisional-name-distinction` is a ChatGPT-oriented skill for preventing assistant-invented names from being mistaken for user decisions.
+`provisional-name-distinction` is a ChatGPT-oriented skill for preventing assistant-invented conversational names from being mistaken for user decisions.
 
 ## Core rule
 
-A name invented by the assistant remains visibly provisional until the user decides to adopt it.
+An in-scope name invented by the assistant remains visibly provisional until the user decides to adopt it.
 
-Every assistant-authored occurrence of such a name is written as:
+Every assistant-authored conversational occurrence of such a name is written as:
 
 ```text
 仮称「name」
@@ -28,7 +28,13 @@ Repeating, quoting, discussing, or comparing a provisional name does not by itse
 
 ## Scope
 
-The rule can apply to skill names, feature names, filenames, commands, functions, classes, modules, labels, titles, and other identifiers introduced during a conversation.
+The rule applies to names proposed or discussed as names in conversational prose, such as skill, feature, component, command, function, class, or module names.
+
+Strings chosen only to populate artifact or metadata fields are outside the scope.
+This includes branch names, PR or issue titles, document titles or headings, filenames, file paths, commit messages, and similar artifact metadata.
+Those values do not require a `仮称` marker merely because the assistant created them.
+
+If the same string is separately discussed as the name of a concept, feature, skill, component, or similar subject, that conversational occurrence remains subject to the rule.
 
 ## Installation
 

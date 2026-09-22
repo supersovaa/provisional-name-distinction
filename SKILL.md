@@ -1,21 +1,31 @@
 ---
 name: provisional-name-distinction
-description: Distinguish names invented by the assistant from names decided by the user. Mark every assistant-created provisional name as 仮称「...」 until the user adopts it, and stop using names the user rejects.
+description: Distinguish assistant-invented conversational names from names decided by the user. Mark in-scope provisional names as 仮称「...」 until the user adopts them, and stop using names the user rejects. Artifact metadata such as branch names, titles, filenames, paths, and commit messages is out of scope.
 ---
 
 # Provisional Name Distinction
 
-Use this skill whenever the assistant introduces or discusses names, labels, identifiers, titles, filenames, command names, function names, class names, module names, skill names, or similar user-facing identifiers during a conversation.
+Use this skill whenever the assistant proposes or discusses a name for a concept, feature, skill, component, command, function, class, module, or similar subject during a conversation.
 
 ## Purpose
 
-Keep assistant-invented names clearly distinct from names the user has actually decided to use.
+Keep assistant-invented conversational names clearly distinct from names the user has actually decided to use.
 
-A name invented by the assistant must never become an apparent decision merely because the assistant started using it.
+An in-scope name invented by the assistant must never become an apparent decision merely because the assistant started using it.
+
+## Scope
+
+Apply this rule to names being proposed or discussed as names in conversational prose.
+
+Do not apply it to strings chosen only to populate an artifact or metadata field.
+In particular, branch names, PR or issue titles, document titles or headings, filenames, file paths, commit messages, and similar artifact metadata are outside this skill's scope.
+Do not add `仮称「...」` to such values merely because the assistant created them.
+
+If the same string is separately proposed or discussed as the name of a concept, feature, skill, component, command, function, class, module, or similar subject, that conversational occurrence is in scope.
 
 ## Name states
 
-Track each relevant name as one of these states:
+Track each relevant in-scope name as one of these states:
 
 - **Provisional**: invented by the assistant and not yet adopted or rejected by the user.
 - **Adopted**: the user has clearly decided to use the name.
@@ -25,21 +35,21 @@ Do not infer adoption merely because the user repeats a provisional name, asks a
 
 ## Provisional names
 
-Whenever the assistant invents a name that the user has not already decided on, render that name as:
+Whenever the assistant invents an in-scope name that the user has not already decided on, render that name as:
 
 ```text
 仮称「name」
 ```
 
-Keep this marking on every assistant-authored occurrence of that name while it remains provisional.
-Do not use the same provisional name bare in later turns.
+Keep this marking on every assistant-authored conversational occurrence of that name while it remains provisional.
+Do not use the same provisional name bare in later conversational prose.
 Do not let repeated use turn a provisional name into an implicit decision.
 
 This rule also applies when the user explicitly asks the assistant to propose name candidates.
-Every assistant-created candidate remains provisional until the user adopts it.
+Every assistant-created in-scope candidate remains provisional until the user adopts it.
 
-If a provisional name cannot be shown with the marker in a particular syntactic position, do not silently present it as settled there.
-Keep the distinction explicit in the surrounding response or avoid committing the provisional name to that syntax until the user decides it.
+If an in-scope provisional name cannot be shown with the marker in a particular syntactic position, keep the distinction explicit in the surrounding conversational response or avoid committing the provisional name to that syntax until the user decides it.
+This does not override the artifact and metadata exclusions above.
 
 ## Adoption
 
@@ -114,13 +124,23 @@ User: That one is out.
 Assistant: Understood. I will exclude the rejected name from subsequent candidates and summaries.
 ```
 
+Artifact metadata is exempt:
+
+```text
+Branch: fix/provisional-name-scope
+File: docs/naming-scope.md
+```
+
+No `仮称` marker is required for those values solely because the assistant created them.
+
 ## Final check
 
-Before sending a response that contains names or identifiers, check:
+Before sending a response that contains in-scope names, check:
 
-- Did the assistant invent any of them?
+- Is each occurrence actually in scope rather than only an artifact or metadata value?
+- Did the assistant invent any in-scope names?
 - If so, has the user actually adopted each one?
-- If not adopted, is every assistant-authored occurrence marked as `仮称「...」`?
+- If not adopted, is every assistant-authored conversational occurrence marked as `仮称「...」`?
 - Has any rejected name reappeared?
 - Has any user-originated name been incorrectly presented as assistant-invented or already decided?
 
