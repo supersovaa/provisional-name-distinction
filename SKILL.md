@@ -1,11 +1,11 @@
 ---
 name: provisional-name-distinction
-description: In conversation, mark assistant-invented names as 仮称「...」 until the user adopts them. Drop rejected names. Excludes names chosen only for artifact metadata.
+description: Use when proposing or discussing names in conversation. Distinguish the assistant’s suggestions from the user’s naming decisions.
 ---
 
 # Provisional Name Distinction
 
-Use this skill whenever the assistant proposes or discusses a name for a concept, feature, skill, component, command, function, class, module, or similar subject during a conversation.
+When a name comes up, establish who introduced it and whether the user has adopted or rejected it. Apply the provisional marker to in-scope assistant-invented names. The scope and state rules below cover conversational uses and artifact metadata.
 
 ## Purpose
 
