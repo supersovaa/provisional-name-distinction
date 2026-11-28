@@ -1,17 +1,15 @@
 ---
 name: provisional-name-distinction
-description: Distinguish assistant-invented conversational names from names decided by the user. Mark in-scope provisional names as 仮称「...」 until the user adopts them, and stop using names the user rejects. Artifact metadata such as branch names, titles, filenames, paths, and commit messages is out of scope.
+description: Use when proposing or discussing names in conversation. Distinguish the assistant’s suggestions from the user’s naming decisions.
 ---
 
 # Provisional Name Distinction
 
-Use this skill whenever the assistant proposes or discusses a name for a concept, feature, skill, component, command, function, class, module, or similar subject during a conversation.
+When a name comes up, establish who introduced it and whether the user has adopted or rejected it. Apply the provisional marker to in-scope assistant-invented names. The scope and state rules below cover conversational uses and artifact metadata.
 
 ## Purpose
 
-Keep assistant-invented conversational names clearly distinct from names the user has actually decided to use.
-
-An in-scope name invented by the assistant must never become an apparent decision merely because the assistant started using it.
+Keep a conversational name invented by the assistant provisional until the user adopts it. Repeated use by the assistant does not establish adoption.
 
 ## Scope
 
