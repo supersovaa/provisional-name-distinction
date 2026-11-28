@@ -9,7 +9,7 @@ Use this skill whenever the assistant proposes or discusses a name for a concept
 
 ## Purpose
 
-Keep a conversational name proposed by the assistant provisional until the user adopts it. Repeated use by the assistant does not establish adoption.
+Keep a conversational name invented by the assistant provisional until the user adopts it. Repeated use by the assistant does not establish adoption.
 
 ## Scope
 
